@@ -1,0 +1,28 @@
+body {
+    background-color: #f2d16d;
+    font-family: 'Press Start 2P', cursive;
+    margin: 0;
+    padding: 2rem;
+  }
+  
+  .container {
+    max-width: 600px;
+    margin: auto;
+  }
+  
+  .nes-container {
+    margin-top: 2rem;
+    padding: 2rem;
+  }
+  
+  .status-section,
+  .meal-section {
+    margin-top: 1rem;
+  }
+  
+  .status-section label,
+  .meal-section label {
+    display: block;
+    margin-top: 0.5rem;
+  }
+  

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Child Status</title>
+  <link href="https://unpkg.com/nes.css/css/nes.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1 class="nes-text is-primary">Child Daily Status</h1>
+    <form id="statusForm" class="nes-container with-title is-centered">
+      <p class="title">Status Form</p>
+
+      <div class="nes-field">
+        <label for="childName">Child Name:</label>
+        <input type="text" id="childName" class="nes-input" required />
+      </div>
+
+      <div class="status-section">
+        <p>Status:</p>
+        <label>
+          <input type="radio" class="nes-radio" name="status" value="Check-in" />
+          <span>Check-in</span>
+        </label>
+        <label>
+          <input type="radio" class="nes-radio" name="status" value="Check-out" />
+          <span>Check-out</span>
+        </label>
+      </div>
+
+      <div class="meal-section">
+        <label for="meal">Meal:</label>
+        <div class="nes-select">
+          <select id="meal">
+            <option value="">-- Select Meal --</option>
+            <option value="Breakfast">Breakfast</option>
+            <option value="Lunch">Lunch</option>
+            <option value="Snack">Snack</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="nes-field">
+        <label for="notes">Notes:</label>
+        <textarea id="notes" class="nes-textarea" placeholder="Optional notes..."></textarea>
+      </div>
+
+      <button type="button" class="nes-btn is-success" onclick="sendData()">Submit</button>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
