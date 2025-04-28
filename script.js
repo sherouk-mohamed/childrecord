@@ -1,10 +1,13 @@
 window.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
-  const childName = params.get("childName");
-  const studentId = params.get("childId");
+  const childName = params.get("child");
+  const studentId = params.get("studentId");
 
   if (childName) {
     document.getElementById("childName").value = decodeURIComponent(childName);
+  }
+    if (studentId) {
+    document.getElementById("studentId").value = decodeURIComponent(studentId); 
   }
 });
 
