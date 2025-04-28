@@ -1,6 +1,7 @@
 window.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
-  const childName = params.get("child");
+  const childName = params.get("childName");
+  const studentId = params.get("childId");
 
   if (childName) {
     document.getElementById("childName").value = decodeURIComponent(childName);
