@@ -8,23 +8,33 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 function sendData() {
+  const studentId = document.getElementById("studentId").value.trim();
   const name = document.getElementById("childName").value.trim();
   const status = document.querySelector("input[name='status']:checked")?.value || "";
   const meal = document.getElementById("meal").value;
   const notes = document.getElementById("notes").value.trim();
-
-if (!name || (!status && meal === "none")) {
+  const currentTime = new Date().toLocaleString();
+  
+if (!studentId ||!name || (!status && meal === "")) {
     alert("Please enter the child's name and select at least a status or a meal.");
     return;
   }
-    // Example payload for Google Sheets or backend
+
   const data = {
+   studentId,
     name,
-    status,
-    meal: meal !== "none" ? meal : "",
     notes,
-    timestamp: new Date().toLocaleString()
+    overallTimestamp: currentTime
   };
+    if (status) {
+    data.status = status;
+    data.statusTime = currentTime;
+  }
+
+  if (meal) {
+    data.meal = meal;
+    data.mealTime = currentTime;
+  }
   
  console.log("Data to be sent:", data);
 
