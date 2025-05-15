@@ -29,18 +29,37 @@ if (!studentId ||!name || (!status && meal === "")) {
     name,
     notes,
     overallTimestamp: currentTime
+    checkIn: "",
+    checkOut: "",
+    breakfast: "",
+    lunch: "",
+    snack: ""
   };
-    if (status) {
-    data.status = status;
-    data.statusTime = currentTime;
+  if (status === "Check-in") {
+    data.checkIn = currentTime;
+  } else if (status === "Check-out") {
+    data.checkOut = currentTime;
   }
 
-  if (meal) {
-    data.meal = meal;
-    data.mealTime = currentTime;
+  if (meal === "Breakfast") {
+    data.breakfast = currentTime;
+  } else if (meal === "Lunch") {
+    data.lunch = currentTime;
+  } else if (meal === "Snack") {
+    data.snack = currentTime;
   }
   
  console.log("Data to be sent:", data);
+  
+  fetch("https://script.google.com/macros/s/AKfycby0KFP1lgwOJAonCu-gVeRzSl10fxvdeY-5vd9tvJlpZGflokmvwZmDigHXAcJ7308b/exec", {
+    method: "POST",
+    mode: "no-cors",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  });
+  
 
   alert(" Data submitted successfully!");
 
