@@ -1,80 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>QR Code Generator</title>
-  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
-  <style>
-    #qrcode { margin: 20px; }
-    .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Child Status</title>
+  <link href="https://unpkg.com/nes.css/css/nes.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <h1>Student QR Code Generator</h1>
-    
-    <div>
-      <label>Student ID: <input type="text" id="inputStudentId"></label><br>
-      <label>Student Name: <input type="text" id="inputChildName"></label><br>
-      <button onclick="generateQR()">Generate QR Code</button>
-    </div>
-    
-    <div id="qrcode"></div>
-    <div id="generatedUrl"></div>
-    
-    <h2>Testing Area</h2>
-    <div id="testResults">
-      <p>Try scanning the QR code or visiting the generated URL to see if parameters appear.</p>
-    </div>
+    <h1 class="nes-text is-primary">Child Daily Status</h1>
+    <form id="statusForm" class="nes-container with-title is-centered">
+      <p class="title">Status Form</p>
+
+      <div class="nes-field">
+        <label for="childName">Child Name:</label>
+        <input type="text" id="childName" class="nes-input" required />
+      </div>
+
+      <div class="status-section">
+        <p>Status:</p>
+        <label>
+          <input type="radio" class="nes-radio" name="status" value="Check-in" />
+          <span>Check-in</span>
+        </label>
+        <label>
+          <input type="radio" class="nes-radio" name="status" value="Check-out" />
+          <span>Check-out</span>
+        </label>
+      </div>
+
+      <div class="meal-section">
+        <label for="meal">Meal:</label>
+        <div class="nes-select">
+          <select id="meal">
+            <option value="">-- Select Meal --</option>
+            <option value="Breakfast">Breakfast</option>
+            <option value="Lunch">Lunch</option>
+            <option value="Snack">Snack</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="nes-field">
+        <label for="notes">Notes:</label>
+        <textarea id="notes" class="nes-textarea" placeholder="Optional notes..."></textarea>
+      </div>
+
+      <button type="button" class="nes-btn is-success" onclick="sendData()">Submit</button>
+    </form>
   </div>
 
-  <script>
-    function generateQR() {
-      const studentId = document.getElementById('inputStudentId').value;
-      const childName = document.getElementById('inputChildName').value;
-      
-      if (!studentId || !childName) {
-        alert("Please enter both Student ID and Name");
-        return;
-      }
-      
-      // Encode parameters
-      const baseUrl = "https://sherouk-mohamed.github.io/childrecord/";
-      const params = new URLSearchParams({
-        studentId: studentId,
-        childName: childName
-      });
-      const fullUrl = baseUrl + "?" + params.toString();
-      
-      // Display URL
-      document.getElementById('generatedUrl').innerHTML = 
-        `<strong>Generated URL:</strong> <a href="${fullUrl}" target="_blank">${fullUrl}</a>`;
-      
-      // Generate QR code
-      document.getElementById("qrcode").innerHTML = "";
-      new QRCode(document.getElementById("qrcode"), {
-        text: fullUrl,
-        width: 200,
-        height: 200,
-      });
-      
-      // Simulate parameter reading (for testing on this page)
-      simulateParameterReading(fullUrl);
-    }
-    
-    function simulateParameterReading(url) {
-      const testUrl = new URL(url);
-      const studentId = testUrl.searchParams.get('studentId');
-      const childName = testUrl.searchParams.get('childName');
-      
-      document.getElementById('testResults').innerHTML = `
-        <h3>Test Results (simulated)</h3>
-        <p>URL: ${url}</p>
-        <p>Extracted Student ID: <strong>${studentId}</strong></p>
-        <p>Extracted Student Name: <strong>${childName}</strong></p>
-        <p>If these values are correct but don't show in your form, check your script.js file.</p>
-      `;
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
