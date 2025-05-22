@@ -3,20 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Child Status</title>
+  <title>Child Daily Status</title>
   <link href="https://unpkg.com/nes.css/css/nes.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <h1 class="nes-text is-primary">Child Daily Status</h1>
+    <h1 class="nes-text is-primary title">Child Daily Status</h1>
+
     <form id="statusForm" class="nes-container with-title is-centered">
       <p class="title">Status Form</p>
 
       <div class="nes-field">
+        <label for="studentId">Student ID:</label>
+        <input type="text" id="studentId" class="nes-input" placeholder="e.g. C1234" />
+      </div>
+
+      <div class="nes-field">
         <label for="childName">Child Name:</label>
-        <input type="text" id="childName" class="nes-input" required />
+        <input type="text" id="childName" class="nes-input" placeholder="e.g. Laila Ahmed" required />
       </div>
 
       <div class="status-section">
@@ -34,7 +40,7 @@
       <div class="meal-section">
         <label for="meal">Meal:</label>
         <div class="nes-select">
-          <select id="meal">
+          <select id="meal" required>
             <option value="">-- Select Meal --</option>
             <option value="Breakfast">Breakfast</option>
             <option value="Lunch">Lunch</option>
